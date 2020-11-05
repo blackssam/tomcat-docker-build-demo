@@ -103,15 +103,16 @@ The push refers to repository [bastion.ps.example.com:5000/rockplace/tomcat]
 9: digest: sha256:831993e955cb491d046bff0b1fb9c47a5d2a5a29668b216b76ae864dc20b5361 size: 2430
 ```
 
-## 2. 오픈시프트 이미지 스트림을 import 한다.
+## 2. 오픈시프트에서 프로젝트 생성 후 이미지 스트림을 import 한다.
 ```
+# oc new-project webinar-demo
 # oc import-image tomcat:latest --from=bastion.ps.example.com:5000/rockplace/tomcat:9 --insecure --confirm
 # oc get is 
 NAME     IMAGE REPOSITORY                                                       TAGS     UPDATED
 tomcat   image-registry.openshift-image-registry.svc:5000/webinar-demo/tomcat   latest   13 minutes ago
 ```
 
-## 3. 오픈시프트 어플리케이션 생성
+## 3. 이미지 스트림을 사용하여 어플리케이션 POD를 생성한다.
 ```
 # oc new-app --image-stream=tomcat:latest
 # oc get pod,svc
@@ -120,7 +121,11 @@ pod/tomcat-69c5bd6c85-ws4v4   1/1     Running   0          18m
 
 NAME             TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)             AGE
 service/tomcat   ClusterIP   172.30.204.9   <none>        8009/TCP,8080/TCP   28m 
+```
 
+
+## 4. route 를 생성하고 브라우저로 접속을 확인하다.
+```
 # oc expose service tomcat --name=webinar-demo
 # oc get route
 NAME                 HOST/PORT                          PATH   SERVICES   PORT       TERMINATION   WILDCARD
