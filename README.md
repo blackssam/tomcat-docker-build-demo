@@ -1,7 +1,8 @@
 # Tomcat Docker 빌드
 
-- openjdk:8 BaseImage
-- apache-tomcat-9.0.39
+- [openjdk](https://hub.docker.com/_/openjdk) 1.8.0_272-b10
+- [apache-tomcat](http://tomcat.apache.org/) 9.0.39
+- [jpetsore](https://github.com/mybatis/jpetstore-6) 6
 
 ## 1. Docker 컨테이너 이미지 생성하기
 
