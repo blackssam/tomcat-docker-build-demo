@@ -11,7 +11,9 @@ ENV CATALINA_HOME=/usr/local/apache-tomcat-${CATALINA_VERSION} \
 ADD https://downloads.apache.org/tomcat/tomcat-${CATALINA_MAJOR_VER}/v${CATALINA_VERSION}/bin/apache-tomcat-${CATALINA_VERSION}.tar.gz /usr/local
 
 RUN cd /usr/local && tar -xf apache-tomcat-${CATALINA_VERSION}.tar.gz -C /usr/local && rm -f apache-tomcat-${CATALINA_VERSION}.tar.gz \
-    && useradd -u 1000 -G root tomcat && chown -R tomcat:root ${CATALINA_HOME}
+    && useradd -u 1000 -G root tomcat && chown -R tomcat:root ${CATALINA_HOME} \
+    && chmod 750 $CATALINA_HOME/conf && chmod 640 $CATALINA_HOME/conf/* \  
+    && chmod 777 $CATALINA_HOME/temp $CATALINA_HOME/work $CATALINA_HOME/logs $CATALINA_HOME/webapps 
 
 ADD jpetstore.war $CATALINA_HOME/webapps/
 
