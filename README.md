@@ -101,6 +101,9 @@ The push refers to repository [bastion.ps.example.com:5000/rockplace/tomcat]
 14adae7093b3: Pushed
 ...
 9: digest: sha256:831993e955cb491d046bff0b1fb9c47a5d2a5a29668b216b76ae864dc20b5361 size: 2430
+
+# curl -k https://bastion.ps.example.com:5000/v2/_catalog
+{"repositories":["rockplace/tomcat",.... ]}
 ```
 
 ## 2. 오픈시프트에서 프로젝트 생성 후 이미지 스트림을 import 한다.
